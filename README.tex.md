@@ -157,7 +157,7 @@ while Q not empty
       Q.insert(d_r ,subtree.right)
 ```
 
-> **Question:**  If I have just a single query to conduct on a set of <img src="/tex/55a049b8f161ae7cfeb0197d75aff967.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/>
+> **Question:**  If I have just a single query to conduct on a set of $n$
 > objects, is it worth it to use a BVH?
 >
 > **Hint:** What is the complexity of _building_ a BVH? What is the complexity
@@ -248,8 +248,8 @@ not formalize the [probability
 distribution](https://en.wikipedia.org/wiki/Probability_distribution) of inputs,
 but instead consider uniformly random [point
 clouds](https://en.wikipedia.org/wiki/Point_cloud) or real-world surface models.
-The AABB Tree algorithms should behave like <img src="/tex/f9bb6ecace3a663c4adf0544035b4da4.svg?invert_in_darkmode&sanitize=true" align=middle width=59.62030469999999pt height=24.65753399999998pt/> compared to brute
-force <img src="/tex/1f08ccc9cd7309ba1e756c3d9345ad9f.svg?invert_in_darkmode&sanitize=true" align=middle width=35.64773519999999pt height=24.65753399999998pt/> algorithms. For large inputs the difference should be striking.
+The AABB Tree algorithms should behave like $O(\log{n})$ compared to brute
+force $O(n)$ algorithms. For large inputs the difference should be striking.
 
 ## Tasks
 
@@ -365,8 +365,8 @@ casting](https://github.com/alecjacobson/computer-graphics-ray-casting)).
 
 ### `src/ray_intersect_triangle_mesh_brute_force.cpp`
 
-Shoot a ray at a triangle mesh with <img src="/tex/55a049b8f161ae7cfeb0197d75aff967.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/> faces and record the closest hit. Use
-a brute force loop over all triangles, aim for <img src="/tex/1f08ccc9cd7309ba1e756c3d9345ad9f.svg?invert_in_darkmode&sanitize=true" align=middle width=35.64773519999999pt height=24.65753399999998pt/> complexity but focus on
+Shoot a ray at a triangle mesh with $n$ faces and record the closest hit. Use
+a brute force loop over all triangles, aim for $O(n)$ complexity but focus on
 correctness. This will be your reference solution.
 
 ### `src/ray_intersect_box.cpp`
@@ -390,7 +390,7 @@ determine the left-right split.
 ### `AABBTree::ray_intersect` in `src/AABBTree_ray_intersect.cpp`
 
 Determine whether and how a ray intersects the contents of an AABB tree. The
-method should perform in <img src="/tex/f9bb6ecace3a663c4adf0544035b4da4.svg?invert_in_darkmode&sanitize=true" align=middle width=59.62030469999999pt height=24.65753399999998pt/> time for a tree containing <img src="/tex/55a049b8f161ae7cfeb0197d75aff967.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/>
+method should perform in $O(\log{n})$ time for a tree containing $n$
 (reasonably distributed) objects.
 
 If you run `./rays ../data/rubber-ducky.obj` you should see something like:
@@ -422,9 +422,9 @@ object but your tree algorithm is not finding it.
 
 ### `src/nearest_neighbor_brute_force.cpp`
 
-Compute the nearest neighbor for a query in the set of <img src="/tex/55a049b8f161ae7cfeb0197d75aff967.svg?invert_in_darkmode&sanitize=true" align=middle width=9.86687624999999pt height=14.15524440000002pt/> points (rows of
+Compute the nearest neighbor for a query in the set of $n$ points (rows of
 `points`). This should be a **_slow reference implementation_**. Aim for a
-computational complexity of <img src="/tex/1f08ccc9cd7309ba1e756c3d9345ad9f.svg?invert_in_darkmode&sanitize=true" align=middle width=35.64773519999999pt height=24.65753399999998pt/> but focus on correctness. 
+computational complexity of $O(n)$ but focus on correctness. 
 
 ### `src/point_box_squared_distance.cpp`
 
@@ -492,5 +492,5 @@ Error: Intersecting pairs found using tree but not brute force:
 ```
 
 This indicates that your tree is finding _more_ intersecting triangles than your
-brute force method. In particular, the tree thinks the <img src="/tex/b7afe912ac7ed280f96e7cfb0f35a027.svg?invert_in_darkmode&sanitize=true" align=middle width=8.219209349999991pt height=21.18721440000001pt/>-th triangle of mesh A
-is intersecting the <img src="/tex/7295bc071a3c9dc4d8627e19de64928f.svg?invert_in_darkmode&sanitize=true" align=middle width=24.657628049999992pt height=21.18721440000001pt/>-th triangle of mesh B.
+brute force method. In particular, the tree thinks the $7$-th triangle of mesh A
+is intersecting the $772$-th triangle of mesh B.
